@@ -1,0 +1,177 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import arreglo.ArregloEmpleado;
+
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+
+public class Ven extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextArea txtS;
+	private JButton btnNewButton;
+	private JButton btnAgregar;
+	private JButton btnQuitar;
+	private JTextField txtNom;
+	private JTextField txtDNI;
+	private JTextField txtApe;
+	private JTextField txtCorreo;
+	private JTextField txtNum;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Ven frame = new Ven();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Ven() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		{
+			txtS = new JTextArea();
+			txtS.setBounds(10, 119, 414, 131);
+			contentPane.add(txtS);
+		}
+		{
+			btnNewButton = new JButton("reportar");
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(131, 85, 89, 23);
+			contentPane.add(btnNewButton);
+		}
+		{
+			btnAgregar = new JButton("agregar");
+			btnAgregar.addActionListener(this);
+			btnAgregar.setBounds(22, 85, 89, 23);
+			contentPane.add(btnAgregar);
+		}
+		{
+			btnQuitar = new JButton("Quitar");
+			btnQuitar.setBounds(256, 85, 89, 23);
+			contentPane.add(btnQuitar);
+		}
+		{
+			txtNom = new JTextField();
+			txtNom.setBounds(48, 11, 86, 20);
+			contentPane.add(txtNom);
+			txtNom.setColumns(10);
+		}
+		{
+			txtDNI = new JTextField();
+			txtDNI.setBounds(33, 54, 86, 20);
+			contentPane.add(txtDNI);
+			txtDNI.setColumns(10);
+		}
+		{
+			txtApe = new JTextField();
+			txtApe.setBounds(201, 11, 86, 20);
+			contentPane.add(txtApe);
+			txtApe.setColumns(10);
+		}
+		{
+			txtCorreo = new JTextField();
+			txtCorreo.setBounds(201, 54, 86, 20);
+			contentPane.add(txtCorreo);
+			txtCorreo.setColumns(10);
+		}
+		{
+			txtNum = new JTextField();
+			txtNum.setBounds(348, 11, 86, 20);
+			contentPane.add(txtNum);
+			txtNum.setColumns(10);
+		}
+		{
+			lblNombre = new JLabel("Nombre");
+			lblNombre.setBounds(8, 14, 46, 14);
+			contentPane.add(lblNombre);
+		}
+		{
+			lblDni = new JLabel("DNI");
+			lblDni.setBounds(10, 57, 46, 14);
+			contentPane.add(lblDni);
+		}
+		{
+			lblApellido = new JLabel("APELLIDO");
+			lblApellido.setBounds(145, 14, 46, 14);
+			contentPane.add(lblApellido);
+		}
+		{
+			lblCorreo = new JLabel("CORREO");
+			lblCorreo.setBounds(131, 60, 46, 14);
+			contentPane.add(lblCorreo);
+		}
+		{
+			lblTelefono = new JLabel("TELEFONO");
+			lblTelefono.setBounds(297, 14, 46, 14);
+			contentPane.add(lblTelefono);
+		}
+		Listado();
+	}
+	ArregloEmpleado ae= new ArregloEmpleado();
+	private JLabel lblNombre;
+	private JLabel lblDni;
+	private JLabel lblApellido;
+	private JLabel lblCorreo;
+	private JLabel lblTelefono;
+	
+	
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+		if (e.getSource() == btnAgregar) {
+			do_btnAgregar_actionPerformed(e);
+		}
+	}
+	protected void do_btnAgregar_actionPerformed(ActionEvent e) {
+		
+		
+	
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		txtS.setText("");
+		Listado();
+		Imprimir("la cantidad de empleados es: "+ae.Tamaño());
+		
+	}
+	void Imprimir(String s) {
+		txtS.append(s+"\n");
+		
+	}
+	void Listado() {
+		Imprimir("Nombre\tApellido\tDNI\tcorreo\tTelefono");
+		for (int i = 0; i < ae.Tamaño(); i++) {
+			Imprimir(""+ae.Obtener(i).getNom()+"\t"+ae.Obtener(i).getApe()+"\t"+ae.Obtener(i).getDni()+"\t"+ae.Obtener(i).getCorreo()+
+		    "\t"+ae.Obtener(i).getNum());
+		}
+	}
+}

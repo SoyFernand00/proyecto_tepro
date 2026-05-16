@@ -1,0 +1,229 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+
+import arreglo.ArregloEmpleado;
+import clase.Empleado;
+
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import java.awt.Color;
+import java.awt.Font;
+
+public class Ven extends JFrame implements ActionListener {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextArea txtS;
+	private JButton btnNewButton;
+	private JButton btnAgregar;
+	private JButton btnQuitar;
+	private JTextField txtNom;
+	private JTextField txtDNI;
+	private JTextField txtApe;
+	private JTextField txtCorreo;
+	private JTextField txtNum;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Ven frame = new Ven();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public Ven() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 561, 300);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(128, 255, 255));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		{
+			txtS = new JTextArea();
+			txtS.setFont(new Font("Monospaced", Font.BOLD, 14));
+			txtS.setBounds(10, 119, 527, 131);
+			contentPane.add(txtS);
+		}
+		{
+			btnNewButton = new JButton("REPORTAR");
+			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 10));
+			btnNewButton.addActionListener(this);
+			btnNewButton.setBounds(164, 85, 115, 23);
+			contentPane.add(btnNewButton);
+		}
+		{
+			btnAgregar = new JButton("AGREGAR");
+			btnAgregar.setFont(new Font("Tahoma", Font.BOLD, 10));
+			btnAgregar.addActionListener(this);
+			btnAgregar.setBounds(22, 85, 127, 23);
+			contentPane.add(btnAgregar);
+		}
+		{
+			btnQuitar = new JButton("QUITAR");
+			btnQuitar.setFont(new Font("Tahoma", Font.BOLD, 10));
+			btnQuitar.addActionListener(this);
+			btnQuitar.setBounds(289, 86, 111, 23);
+			contentPane.add(btnQuitar);
+		}
+		{
+			txtNom = new JTextField();
+			txtNom.setBounds(63, 14, 86, 20);
+			contentPane.add(txtNom);
+			txtNom.setColumns(10);
+		}
+		{
+			txtDNI = new JTextField();
+			txtDNI.setBounds(393, 14, 133, 20);
+			contentPane.add(txtDNI);
+			txtDNI.setColumns(10);
+		}
+		{
+			txtApe = new JTextField();
+			txtApe.setBounds(234, 14, 111, 20);
+			contentPane.add(txtApe);
+			txtApe.setColumns(10);
+		}
+		{
+			txtCorreo = new JTextField();
+			txtCorreo.setBounds(321, 55, 191, 20);
+			contentPane.add(txtCorreo);
+			txtCorreo.setColumns(10);
+		}
+		{
+			txtNum = new JTextField();
+			txtNum.setBounds(76, 55, 110, 20);
+			contentPane.add(txtNum);
+			txtNum.setColumns(10);
+		}
+		{
+			lblNombre = new JLabel("Nombre");
+			lblNombre.setFont(new Font("Onyx", Font.BOLD, 22));
+			lblNombre.setBounds(10, 10, 56, 24);
+			contentPane.add(lblNombre);
+		}
+		{
+			lblDni = new JLabel("DNI");
+			lblDni.setFont(new Font("Onyx", Font.BOLD, 23));
+			lblDni.setBounds(365, 2, 46, 43);
+			contentPane.add(lblDni);
+		}
+		{
+			lblApellido = new JLabel("APELLIDO");
+			lblApellido.setFont(new Font("Onyx", Font.BOLD, 20));
+			lblApellido.setBounds(165, 8, 76, 37);
+			contentPane.add(lblApellido);
+		}
+		{
+			lblCorreo = new JLabel("CORREO");
+			lblCorreo.setFont(new Font("Onyx", Font.BOLD, 20));
+			lblCorreo.setBounds(265, 54, 46, 21);
+			contentPane.add(lblCorreo);
+		}
+		{
+			lblTelefono = new JLabel("TELEFONO");
+			lblTelefono.setFont(new Font("Onyx", Font.BOLD, 20));
+			lblTelefono.setBounds(10, 52, 76, 18);
+			contentPane.add(lblTelefono);
+		}
+		{
+			btnBuscar = new JButton("BUSCAR");
+			btnBuscar.addActionListener(this);
+			btnBuscar.setFont(new Font("Tahoma", Font.BOLD, 10));
+			btnBuscar.setBounds(415, 86, 111, 23);
+			contentPane.add(btnBuscar);
+		}
+		Listado();
+	}
+	ArregloEmpleado ae= new ArregloEmpleado();
+	private JLabel lblNombre;
+	private JLabel lblDni;
+	private JLabel lblApellido;
+	private JLabel lblCorreo;
+	private JLabel lblTelefono;
+	private JButton btnBuscar;
+	
+	
+	
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == btnBuscar) {
+			do_btnBuscar_actionPerformed(e);
+		}
+		if (e.getSource() == btnQuitar) {
+			do_btnQuitar_actionPerformed(e);
+		}
+		if (e.getSource() == btnNewButton) {
+			do_btnNewButton_actionPerformed(e);
+		}
+		if (e.getSource() == btnAgregar) {
+			do_btnAgregar_actionPerformed(e);
+		}
+	}
+	protected void do_btnAgregar_actionPerformed(ActionEvent e) {
+		Empleado es=ae.Buscar(LeerDni());
+		if(es==null) {
+			Empleado es1=new Empleado( LeerNombre(),LeerApellido(), LeerTele(), LeerDni(),LeerCorreo());
+			ae.Adicionar(es1);
+		}
+		else Mensaje("Existe");
+	
+	}
+	void Mensaje(String s) {
+		JOptionPane.showMessageDialog(this, s);
+	}
+	int LeerDni() {
+		return Integer.parseInt(txtDNI.getText());
+	}
+	String LeerNombre() {
+		return txtNom.getText();
+	}
+	String LeerApellido() {
+		return txtApe.getText();
+	}
+	String LeerCorreo() {
+		return txtCorreo.getText();
+	}
+	int LeerTele() {
+		return Integer.parseInt(txtNum.getText());
+	}
+	protected void do_btnNewButton_actionPerformed(ActionEvent e) {
+		
+	}
+	void Imprimir(String s) {
+		txtS.append(s+"\n");
+		
+	}
+	
+	protected void do_btnQuitar_actionPerformed(ActionEvent e) {
+	
+	}
+
+ 
+	protected void do_btnBuscar_actionPerformed(ActionEvent e) {
+		
+	}
+	
+	
+}
