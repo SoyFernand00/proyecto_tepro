@@ -533,7 +533,6 @@ public class Ven extends JFrame implements ActionListener {
 	}
 	protected void do_btnModiReg_actionPerformed(ActionEvent e) {
 		try {
-
 	        // 🔎 1. BUSCAR
 	        String marcaBuscada = txtMarca.getText();
 	        String proveedorBuscado = txtProvee.getText();
