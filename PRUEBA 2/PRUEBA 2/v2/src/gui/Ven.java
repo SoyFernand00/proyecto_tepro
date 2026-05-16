@@ -536,9 +536,7 @@ public class Ven extends JFrame implements ActionListener {
 	        // 🔎 1. BUSCAR
 	        String marcaBuscada = txtMarca.getText();
 	        String proveedorBuscado = txtProvee.getText();
-
 	        Productos pro = null;
-
 	        if(!marcaBuscada.isEmpty()) {
 	            pro = ap.BuscarPro(marcaBuscada);
 	        }
